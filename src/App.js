@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import './styles.css';
 
-import names from "./data/index"
+import { NamePicker } from './components/NamePicker';
+import { Search } from './components/Search';
+import { ShortListTag } from './components/short-List';
 
 function App({names}) {
+
+  const [searchVal, updateSearchVal] = useState("")
+  const [shortList, updateShortList] = useState([])
+
   return (
-    <ul>
-
-      {names.map((element) => 
-      <li className={element.sex} key = {element.id}> 
-      <button> {element.name} </button> 
-      </li>
-      )}
-
-    </ul>
+  
+  <Fragment>
+    <Search searchVal = {searchVal} updateSearchVal = {updateSearchVal}></Search>
+    <ShortListTag shortList = {shortList} updateShortList= {updateShortList}/>
+    <NamePicker names={names} searchVal = {searchVal} shortList = {shortList} updateShortList = {updateShortList}></NamePicker>
+    </Fragment>
   );
 }
 
